@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Geologica', 'Roboto Mono';
+}
+h1 {
+  font-family: 'Geologica';
+  font-style: italic;
+  font-size: 8vw;
+}
+h2 {
+  font-family: 'Roboto Mono';
+  font-style: italic;
+  font-size: 8vw;
+}
+h3 {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-size: 8vw;
+}
