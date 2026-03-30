@@ -404,7 +404,6 @@ function init() {
     section5.classList.add('marquee5-advanced');
   }
 
-  // ---------- СЕКЦИЯ 6 (управление видимостью изображений) ----------
   const section6 = document.querySelector('section:nth-of-type(6)');
   if (section6 && !section6.classList.contains('s6-initialized')) {
     const s6Images = [];
