@@ -5,7 +5,6 @@ if (document.readyState === 'loading') {
 }
 
 function init() {
-  // ---------- СЕКЦИЯ 1 (воспоминания) ----------
   const textElements = document.querySelectorAll('.s1_p');
   if (textElements.length > 0) {
     const allImages = document.querySelectorAll('.s1_img');
@@ -104,7 +103,6 @@ function init() {
     startBlinking();
   }
 
-  // ---------- СЕКЦИЯ 2 (фотографии) ----------
   const bottomElement = document.querySelector('#s2_bottom');
   if (bottomElement) {
     bottomElement.style.transition = 'transform 0.2s ease';
@@ -179,7 +177,6 @@ function init() {
     }
   }
 
-  // ---------- УПРАВЛЕНИЕ ПОЛОЖЕНИЕМ РАМОК ПРИ КЛИКЕ НА group_for_photos ----------
   const groupForPhotos = document.querySelector('#group_for_photos');
   if (groupForPhotos) {
     groupForPhotos.style.cursor = 'pointer';
@@ -193,7 +190,6 @@ function init() {
     });
   }
 
-  // ---------- СЕКЦИЯ 3 (бегущая строка) ----------
   const section3 = document.querySelector('section:nth-of-type(3)');
   if (section3 && !section3.classList.contains('marquee-initialized')) {
     const originalChildren = Array.from(section3.children);
@@ -242,7 +238,6 @@ function init() {
     section3.classList.add('marquee-initialized');
   }
 
-  // ---------- СЕКЦИЯ 4 ----------
   const section4 = document.querySelector('section:nth-of-type(4)');
   if (section4) {
     const allPBlocks = section4.querySelectorAll('.s4_p');
@@ -274,7 +269,6 @@ function init() {
     });
   }
 
-  // ---------- СЕКЦИЯ 5 (непрерывная бегущая строка без рывков) ----------
   const section5 = document.querySelector('section:nth-of-type(5)');
   if (section5 && !section5.classList.contains('marquee5-advanced')) {
     const divs = Array.from(section5.children).filter(
@@ -530,17 +524,13 @@ function init() {
 
     section6.classList.add('s6-initialized');
   }
-
-  // ---------- СЕКЦИЯ 7 (бегущая строка без рывков) ----------
   const section7 = document.querySelector('section:nth-of-type(7)');
   if (section7 && !section7.classList.contains('marquee7-initialized')) {
     const originalItems = Array.from(section7.children);
     if (originalItems.length === 0) return;
 
-    // Сохраняем оригинальные стили секции
     const computedStyle = getComputedStyle(section7);
 
-    // Очищаем секцию и создаём контейнер для прокрутки
     section7.innerHTML = '';
     section7.style.overflow = 'hidden';
     section7.style.whiteSpace = 'nowrap';
@@ -554,14 +544,11 @@ function init() {
     scrollContainer.style.gap = computedStyle.gap || '2vw';
     scrollContainer.style.width = 'max-content';
 
-    // Добавляем оригинальные элементы
     originalItems.forEach((item) => {
-      // Сбрасываем justify-content для элементов внутри бегущей строки
       item.style.flexShrink = '0';
       scrollContainer.appendChild(item);
     });
 
-    // Клонируем для бесконечного цикла (3 копии для плавности)
     const clone1 = scrollContainer.cloneNode(true);
     const clone2 = scrollContainer.cloneNode(true);
     scrollContainer.appendChild(clone1);
@@ -570,11 +557,10 @@ function init() {
     section7.appendChild(scrollContainer);
 
     let position = 0;
-    const speed = 1.5; // скорость прокрутки
+    const speed = 1.5;
     let animationId = null;
     let lastTimestamp = 0;
 
-    // Получаем ширину одного набора элементов
     const getSetWidth = () => {
       let width = 0;
       const children = scrollContainer.children;
@@ -587,7 +573,6 @@ function init() {
 
     let setWidth = getSetWidth();
 
-    // Обновляем ширину при ресайзе
     const resizeObserver = new ResizeObserver(() => {
       setWidth = getSetWidth();
     });
@@ -600,7 +585,6 @@ function init() {
 
       position -= speed * (delta * 60);
 
-      // Когда ушли на ширину одного набора — переставляем первый набор в конец
       if (position <= -setWidth) {
         const originalCount = originalItems.length;
         for (let i = 0; i < originalCount; i++) {
@@ -616,7 +600,6 @@ function init() {
 
     animationId = requestAnimationFrame(animate);
 
-    // Сохраняем для очистки
     section7._marqueeAnimationId = animationId;
     section7._resizeObserver = resizeObserver;
 
